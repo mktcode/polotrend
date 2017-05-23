@@ -1,0 +1,42 @@
+html, body {
+  background: #eee; }
+  html #logo, body #logo {
+    margin-bottom: 0; }
+    html #logo a, body #logo a {
+      color: #0b7076 !important; }
+      html #logo a:hover, body #logo a:hover {
+        text-decoration: none; }
+  html #subtitle, body #subtitle {
+    margin-top: 0; }
+  html .watch, body .watch {
+    position: relative;
+    padding-left: 25px !important; }
+    html .watch .watch-close, body .watch .watch-close {
+      position: absolute;
+      top: 20px;
+      right: 20px; }
+    html .watch .watch-move, body .watch .watch-move {
+      position: absolute;
+      top: 20px;
+      right: 50px;
+      cursor: move; }
+    html .watch .indicator, body .watch .indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 15px;
+      background: #f2f2f2; }
+      html .watch .indicator .up, html .watch .indicator .down, body .watch .indicator .up, body .watch .indicator .down {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 0; }
+      html .watch .indicator .up, body .watch .indicator .up {
+        bottom: 50%;
+        background: #0c0; }
+      html .watch .indicator .down, body .watch .indicator .down {
+        top: 50%;
+        background: #c00; }
+
+/*# sourceMappingURL=index.css.map */

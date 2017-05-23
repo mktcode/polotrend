@@ -1,0 +1,11 @@
+{
+  "name": "polotrend",
+  "authors": [
+    "mktcode <kontakt@markus-kottlaender.de>"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "uikit": "^3.0.0",
+    "autobahn": "^17.5.1"
+  }
+}

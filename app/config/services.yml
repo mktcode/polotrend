@@ -1,0 +1,4 @@
+services:
+    poloniex:
+        class: AppBundle\Service\Poloniex
+        arguments: ['%poloniex_api_key%', '%poloniex_api_secret%']

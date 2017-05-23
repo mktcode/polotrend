@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="uk-card uk-card-small uk-card-default uk-card-body">
+        <form class="uk-form-stacked uk-text-center" id="addpair-form">
+            <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
+            <h3 id="subtitle" class="uk-text-center uk-heading-line"><span>Poloniex short term trends</span></h3>
+            <label class="uk-form-label uk-text-muted" for="addpair">
+                Add currency pairs and see when people start to buy or sell.
+            </label>
+            <div class="uk-form-controls">
+                <select class="uk-select uk-form-large uk-form-width-medium uk-box-shadow-medium" id="addpair">
+                    {% for pair in pairs %}
+                        {% set pairLabel = pair|split('_') %}
+                        <option value="{{ pair }}">{{ pairLabel[1] ~ '/' ~ pairLabel[0] }}</option>
+                    {% endfor %}
+                </select>
+                <button class="uk-button uk-button-primary uk-button-large uk-box-shadow-medium">
+                    <span uk-icon="icon: plus"></span>
+                </button>
+            </div>
+            {#<div class="uk-margin-top uk-child-width-expand" uk-grid>#}
+                {#<label><input class="uk-checkbox" type="checkbox" checked> buy/sell ratio</label>#}
+                {#<label><input class="uk-checkbox" type="checkbox"> average</label>#}
+                {#<label><input class="uk-checkbox" type="checkbox"> lowest ask</label>#}
+                {#<label><input class="uk-checkbox" type="checkbox"> highest bid</label>#}
+            {#</div>#}
+        </form>
+    </div>
+
+    <div id="watches" class="uk-margin-top uk-margin-bottom" uk-margin uk-sortable="handle: .watch-move"></div>
+
+    <div class="uk-text-small uk-text-muted uk-text-right uk-margin-bottom">
+        Donate BTC: <a href="#donate-modal" class="uk-link-muted" uk-toggle>15kutfMutsAZxNy82LKvvkbMG5nrixiARD</a>
+    </div>
+
+    <div id="donate-modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-padding">
+                <img src="{{ asset('assets/img/donate.png') }}" alt="QR-Code"/>
+                <div class="uk-margin-top uk-text-center uk-text-bold">15kutfMutsAZxNy82LKvvkbMG5nrixiARD</div>
+            </div>
+        </div>
+    </div>
+
+    <template id="watch-template">
+        <div class="watch uk-card uk-card-small uk-card-default uk-card-body">
+            <h3 class="uk-card-title">
+                <!-- PAIR -->
+                <span class="uk-text-muted">(<span class="watch-ticker"><span uk-spinner></span></span>)</span>
+            </h3>
+            <span class="indicator">
+                <span class="up"></span>
+                <span class="down"></span>
+            </span>
+            <a href="" class="watch-close" uk-close></a>
+            <a href="" class="watch-move uk-link-muted" uk-icon="icon: move"></a>
+            <div class="uk-margin-top uk-child-width-expand" uk-grid>
+                <div class="uk-text-center">
+                    <span class="uk-text-muted">buy : sell (5 min.)</span><br>
+                    <span class="uk-text-large"><span class="watch-buysell-5"><span uk-spinner></span></span></span>
+                </div>
+                <div class="uk-text-center">
+                    <span class="uk-text-muted">buy : sell (15 min.)</span><br>
+                    <span class="uk-text-large"><span class="watch-buysell-15"><span uk-spinner></span></span></span>
+                </div>
+                <div class="uk-text-center">
+                    <span class="uk-text-muted">lowest ask</span><br>
+                    <span class="uk-text-large"><span class="watch-lowask"><span uk-spinner></span></span></span>
+                </div>
+                <div class="uk-text-center">
+                    <span class="uk-text-muted">highest bid</span><br>
+                    <span class="uk-text-large"><span class="watch-highbid"><span uk-spinner></span></span></span>
+                </div>
+            </div>
+        </div>
+    </template>
+{% endblock %}
