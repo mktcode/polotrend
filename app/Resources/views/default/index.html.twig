@@ -4,9 +4,9 @@
     <div class="uk-card uk-card-small uk-card-default uk-card-body">
         <form class="uk-form-stacked uk-text-center" id="addpair-form">
             <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
-            <h3 id="subtitle" class="uk-text-center uk-heading-line"><span>Poloniex short term trends</span></h3>
+            <h3 id="subtitle" class="uk-text-center uk-heading-line"><span>See when people start to buy or sell.</span></h3>
             <label class="uk-form-label uk-text-muted" for="addpair">
-                Add currency pairs and see when people start to buy or sell.
+                Add currency pairs to watch their <i><b>buy:sell</b></i> ratio.
             </label>
             <div class="uk-form-controls">
                 <select class="uk-select uk-form-large uk-form-width-medium uk-box-shadow-medium" id="addpair">
@@ -59,24 +59,49 @@
                 <span class="up"></span>
                 <span class="down"></span>
             </span>
-            <a href="" class="watch-close" uk-close></a>
-            <a href="" class="watch-move uk-link-muted" uk-icon="icon: move"></a>
+            <a href="#" class="watch-display uk-link-muted" uk-icon="icon: cog" title="Display" uk-tooltip></a>
+            <div uk-dropdown="mode: click">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="1">1 min.</a></li>
+                    <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="5">5 min.</a></li>
+                    <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="15">15 min.</a></li>
+                    <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="30">30 min.</a></li>
+                    <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="60">60 min.</a></li>
+                </ul>
+            </div>
+            <a href="#" class="watch-alert uk-link-muted" uk-icon="icon: bell" title="Notifications" uk-tooltip></a>
+            <div uk-dropdown="mode: click">
+                <div class="uk-text-small uk-text-muted">Send notification if ratio trend flips.</div>
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li><a href="#" class="toggle-notification" data-ratio="1">1 min.</a></li>
+                    <li><a href="#" class="toggle-notification" data-ratio="5">5 min.</a></li>
+                    <li><a href="#" class="toggle-notification" data-ratio="15">15 min.</a></li>
+                    <li><a href="#" class="toggle-notification" data-ratio="30">30 min.</a></li>
+                    <li><a href="#" class="toggle-notification" data-ratio="60">60 min.</a></li>
+                </ul>
+            </div>
+            <a href="#" class="watch-move uk-link-muted" uk-icon="icon: move" title="Move" uk-tooltip></a>
+            <a href="#" class="watch-close" uk-close title="Close" uk-tooltip></a>
             <div class="uk-margin-top uk-child-width-expand" uk-grid>
-                <div class="uk-text-center">
-                    <span class="uk-text-muted">buy : sell (5 min.)</span><br>
+                <div class="uk-text-center ratio-1">
+                    <span class="uk-text-muted">1 min.</span><br>
+                    <span class="uk-text-large"><span class="watch-buysell-1"><span uk-spinner></span></span></span>
+                </div>
+                <div class="uk-text-center ratio-5">
+                    <span class="uk-text-muted">5 min.</span><br>
                     <span class="uk-text-large"><span class="watch-buysell-5"><span uk-spinner></span></span></span>
                 </div>
-                <div class="uk-text-center">
-                    <span class="uk-text-muted">buy : sell (15 min.)</span><br>
+                <div class="uk-text-center ratio-15">
+                    <span class="uk-text-muted">15 min.</span><br>
                     <span class="uk-text-large"><span class="watch-buysell-15"><span uk-spinner></span></span></span>
                 </div>
-                <div class="uk-text-center">
-                    <span class="uk-text-muted">lowest ask</span><br>
-                    <span class="uk-text-large"><span class="watch-lowask"><span uk-spinner></span></span></span>
+                <div class="uk-text-center ratio-30">
+                    <span class="uk-text-muted">30 min.</span><br>
+                    <span class="uk-text-large"><span class="watch-buysell-30"><span uk-spinner></span></span></span>
                 </div>
-                <div class="uk-text-center">
-                    <span class="uk-text-muted">highest bid</span><br>
-                    <span class="uk-text-large"><span class="watch-highbid"><span uk-spinner></span></span></span>
+                <div class="uk-text-center ratio-60">
+                    <span class="uk-text-muted">60 min.</span><br>
+                    <span class="uk-text-large"><span class="watch-buysell-60"><span uk-spinner></span></span></span>
                 </div>
             </div>
         </div>

@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('assets/img/push-icon.png') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendor/uikit/dist/css/uikit.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}"/>
     </head>
@@ -19,6 +20,7 @@
         <script type="text/javascript" src="{{ asset('assets/vendor/uikit/dist/js/uikit.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/vendor/uikit/dist/js/uikit-icons.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/vendor/autobahn/autobahn.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/vendor/push.js/push.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/index.js') }}"></script>
         {% endblock %}
     </body>

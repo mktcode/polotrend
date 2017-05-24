@@ -6,6 +6,7 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "uikit": "^3.0.0",
-    "autobahn": "^17.5.1"
+    "autobahn": "^17.5.1",
+    "push.js": "^0.0.13"
   }
 }
