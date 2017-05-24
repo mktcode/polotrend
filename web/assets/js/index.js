@@ -12,9 +12,8 @@ $(function () {
 
             addpair.find('option:selected').prop('disabled', true);
 
-            watchHTML = watchHTML.replace('<!-- PAIR -->', pairLabel[1] + '/' + pairLabel[0]);
-
             var watch = $(watchHTML);
+            watch.find('.poloniex-link').attr('href', 'https://poloniex.com/exchange#' + pair).html(pairLabel[1] + '/' + pairLabel[0]);
             watch.data('pair', pair).attr('data-pair', pair);
             watch.hide();
             watch.appendTo('#watches');

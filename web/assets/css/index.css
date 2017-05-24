@@ -13,6 +13,8 @@ html, body {
   html .watch, body .watch {
     position: relative;
     padding-left: 25px !important; }
+    html .watch .poloniex-link, body .watch .poloniex-link {
+      color: #444; }
     html .watch .watch-display, body .watch .watch-display {
       position: absolute;
       top: 20px;
