@@ -11,33 +11,36 @@ html, body
   #subtitle
     margin-top: 0
 
-  .watch
-    position: relative
-    padding-left: 25px !important
-    .watch-close
-      position: absolute
-      top: 20px
-      right: 20px
-    .watch-move
-      position: absolute
-      top: 20px
-      right: 50px
-      cursor: move
-    .indicator
-      position: absolute
-      left: 0
-      top: 0
-      bottom: 0
-      width: 15px
-      background: #f2f2f2
-      .up, .down
+  #watches
+    &.uk-sortable-empty
+      min-height: 0
+    .watch
+      position: relative
+      padding-left: 25px !important
+      .watch-close
+        position: absolute
+        top: 20px
+        right: 20px
+      .watch-move
+        position: absolute
+        top: 20px
+        right: 50px
+        cursor: move
+      .indicator
         position: absolute
         left: 0
-        right: 0
-        height: 0
-      .up
-        bottom: 50%
-        background: #0c0
-      .down
-        top: 50%
-        background: #c00
+        top: 0
+        bottom: 0
+        width: 15px
+        background: #f2f2f2
+        .up, .down
+          position: absolute
+          left: 0
+          right: 0
+          height: 0
+        .up
+          bottom: 50%
+          background: #0c0
+        .down
+          top: 50%
+          background: #c00
