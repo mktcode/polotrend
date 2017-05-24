@@ -15,3 +15,8 @@ Little tool for short term buy/sell based trend indication on poloniex.
         ...
         poloniex_api_key: YourApoKey
         poloniex_api_secret: YourApiSecret
+
+## TODO
+
+- solve performance issues
+- save setup in localstorage (active pairs, display/notification settings)
