@@ -48,5 +48,13 @@ html, body {
       html .watch .indicator .down, body .watch .indicator .down {
         top: 50%;
         background: #c00; }
+    html .watch .uk-dropdown, body .watch .uk-dropdown {
+      padding: 0; }
+    html .watch .uk-dropdown-nav li, body .watch .uk-dropdown-nav li {
+      padding-left: 10px; }
+      html .watch .uk-dropdown-nav li.uk-active, html .watch .uk-dropdown-nav li:hover, body .watch .uk-dropdown-nav li.uk-active, body .watch .uk-dropdown-nav li:hover {
+        background: #1e87f0; }
+        html .watch .uk-dropdown-nav li.uk-active a, html .watch .uk-dropdown-nav li:hover a, body .watch .uk-dropdown-nav li.uk-active a, body .watch .uk-dropdown-nav li:hover a {
+          color: #fff !important; }
 
 /*# sourceMappingURL=index.css.map */
