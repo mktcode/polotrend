@@ -80,8 +80,7 @@ $(function () {
     var interval = 5000,
         ratioHistory = {};
     setInterval(function () {
-        var now = new Date(),
-            time = Math.round(new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()).getTime() / 1000) + 7200;
+        var time = moment.utc().unix();
         $('.watch').each(function (i, item) {
             var watch = $(item),
                 pair = watch.data('pair');
@@ -102,7 +101,7 @@ $(function () {
                         sell60 = 0;
 
                     $.each(data, function (i, trade) {
-                        var tradeTime = Math.round(new Date(trade.date).getTime() / 1000) + 7200,
+                        var tradeTime = moment.utc(trade.date).unix(),
                             tradeAmount = parseFloat(trade.amount);
 
                         if (trade.type == 'buy') {
