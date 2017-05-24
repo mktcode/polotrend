@@ -20,3 +20,5 @@ parameters:
 
     poloniex_api_key: ~
     poloniex_api_secret: ~
+
+    hotjar: false

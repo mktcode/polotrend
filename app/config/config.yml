@@ -38,6 +38,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        hotjar: %hotjar%
 
 # Doctrine Configuration
 doctrine:
