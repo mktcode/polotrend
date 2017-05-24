@@ -141,12 +141,12 @@ $(function () {
 
                     // set indicator (based on 5 min ratio)
                     var ratioHeight = 1;
-                    if (buy1 > sell1) {
-                        ratioHeight = (sell1 / buy1).toFixed(2);
+                    if (buy60 > sell60) {
+                        ratioHeight = (sell60 / buy60).toFixed(2);
                         watch.find('.indicator').find('.down').css('height', '0');
                         watch.find('.indicator').find('.up').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
                     } else {
-                        ratioHeight = (buy1 / sell1).toFixed(2);
+                        ratioHeight = (buy60 / sell60).toFixed(2);
                         watch.find('.indicator').find('.up').css('height', '0');
                         watch.find('.indicator').find('.down').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
                     }
