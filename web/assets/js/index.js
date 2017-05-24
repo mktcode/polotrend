@@ -154,45 +154,45 @@ $(function () {
                     // set 1min ration
                     var ratio = '1 : 1';
                     if (buy1 > sell1) {
-                        ratio = '<span class="uk-text-success">' + (buy1 / Math.max(sell1, 0.00000001)).toFixed(2) + ' : 1</span>';
+                        ratio = '<span class="uk-text-success">' + formatRatio(buy1 / Math.max(sell1, 0.00000001)) + ' : 1</span>';
                     } else if (sell1 > buy1) {
-                        ratio = '<span class="uk-text-danger">1 : ' + (sell1 / Math.max(buy1, 0.00000001)).toFixed(2);
+                        ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell1 / Math.max(buy1, 0.00000001));
                     }
                     watch.find('.watch-buysell-1').html(ratio);
 
                     // set 5min ration
                     ratio = '1 : 1';
                     if (buy5 > sell5) {
-                        ratio = '<span class="uk-text-success">' + (buy5 / Math.max(sell5, 0.00000001)).toFixed(2) + ' : 1</span>';
+                        ratio = '<span class="uk-text-success">' + formatRatio(buy5 / Math.max(sell5, 0.00000001)) + ' : 1</span>';
                     } else if (sell5 > buy5) {
-                        ratio = '<span class="uk-text-danger">1 : ' + (sell5 / Math.max(buy5, 0.00000001)).toFixed(2);
+                        ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell5 / Math.max(buy5, 0.00000001));
                     }
                     watch.find('.watch-buysell-5').html(ratio);
 
                     // set 15 min ratio
                     ratio = '1 : 1';
                     if (buy15 > sell15) {
-                        ratio = '<span class="uk-text-success">' + (buy15 / Math.max(sell15, 0.00000001)).toFixed(2) + ' : 1</span>';
+                        ratio = '<span class="uk-text-success">' + formatRatio(buy15 / Math.max(sell15, 0.00000001)) + ' : 1</span>';
                     } else if (sell15 > buy15) {
-                        ratio = '<span class="uk-text-danger">1 : ' + (sell15 / Math.max(buy15, 0.00000001)).toFixed(2);
+                        ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell15 / Math.max(buy15, 0.00000001));
                     }
                     watch.find('.watch-buysell-15').html(ratio);
 
                     // set 30 min ratio
                     ratio = '1 : 1';
                     if (buy30 > sell30) {
-                        ratio = '<span class="uk-text-success">' + (buy30 / Math.max(sell30, 0.00000001)).toFixed(2) + ' : 1</span>';
+                        ratio = '<span class="uk-text-success">' + formatRatio(buy30 / Math.max(sell30, 0.00000001)) + ' : 1</span>';
                     } else if (sell30 > buy30) {
-                        ratio = '<span class="uk-text-danger">1 : ' + (sell30 / Math.max(buy30, 0.00000001)).toFixed(2);
+                        ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell30 / Math.max(buy30, 0.00000001));
                     }
                     watch.find('.watch-buysell-30').html(ratio);
 
                     // set 60 min ratio
                     ratio = '1 : 1';
                     if (buy60 > sell60) {
-                        ratio = '<span class="uk-text-success">' + (buy60 / Math.max(sell60, 0.00000001)).toFixed(2) + ' : 1</span>';
+                        ratio = '<span class="uk-text-success">' + formatRatio(buy60 / Math.max(sell60, 0.00000001)) + ' : 1</span>';
                     } else if (sell60 > buy60) {
-                        ratio = '<span class="uk-text-danger">1 : ' + (sell60 / Math.max(buy60, 0.00000001)).toFixed(2);
+                        ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell60 / Math.max(buy60, 0.00000001));
                     }
                     watch.find('.watch-buysell-60').html(ratio);
 
@@ -277,6 +277,17 @@ $(function () {
             );
         });
     }, interval);
+
+    function formatRatio(value) {
+        value = value.toFixed(2);
+        if (value > 1000000) {
+            value = Math.floor(value / 1000000) + 'm';
+        } else if (value > 1000) {
+            value = Math.floor(value / 1000) + 'k';
+        }
+
+        return value;
+    }
 
     // update price ticker with websocket
     var wsuri = "wss://api.poloniex.com";
