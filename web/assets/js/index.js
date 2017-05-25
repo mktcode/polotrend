@@ -67,14 +67,14 @@ $(function () {
             UIkit.notification({
                 message: 'Notification enabled!',
                 status: 'success',
-                pos: 'bottom-right',
+                pos: 'bottom-center',
                 timeout: 3000
             });
         } else {
             UIkit.notification({
                 message: 'Notification disabled!',
                 status: 'danger',
-                pos: 'bottom-right',
+                pos: 'bottom-center',
                 timeout: 3000
             });
         }
