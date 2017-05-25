@@ -1,5 +1,9 @@
 html, body {
   background: #eee; }
+  html .uk-button-primary, body .uk-button-primary {
+    background: #0b7076; }
+    html .uk-button-primary:hover, html .uk-button-primary:active, html .uk-button-primary:focus, body .uk-button-primary:hover, body .uk-button-primary:active, body .uk-button-primary:focus {
+      background: #0a6065; }
   html #logo, body #logo {
     margin-bottom: 0; }
     html #logo a, body #logo a {
