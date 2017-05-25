@@ -4,13 +4,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
-        <link rel="apple-touch-icon" href="{{ asset('assets/img/push-icon.png') }}">
-        <link rel="stylesheet" href="{{ asset('assets/vendor/uikit/dist/css/uikit.min.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}"/>
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
+        <link rel="apple-touch-icon" href="{{ asset('assets/img/push-icon.png') }}"/>
+        {% block stylesheets %}
+            {% stylesheets
+            'assets/vendor/uikit/dist/css/uikit.min.css'
+            'assets/css/index.css'
+            filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
         {% if hotjar %}
-        <!-- Hotjar Tracking Code for https://polotrend.markus-kottlaender.de -->
         <script>
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -30,14 +34,18 @@
             </div>
         {% endblock %}
         {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/uikit/dist/js/uikit.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/uikit/dist/js/uikit-icons.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/autobahn/autobahn.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/push.js/push.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/moment/min/moment-with-locales.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/index.js') }}"></script>
+            {% javascripts
+            'assets/vendor/jquery/dist/jquery.min.js'
+            'assets/vendor/uikit/dist/js/uikit.min.js'
+            'assets/vendor/uikit/dist/js/uikit-icons.min.js'
+            'assets/vendor/autobahn/autobahn.min.js'
+            'assets/vendor/push.js/push.min.js'
+            'assets/vendor/moment/min/moment-with-locales.min.js'
+            'assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js'
+            'assets/js/index.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
     </body>
 </html>
