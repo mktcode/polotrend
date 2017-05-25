@@ -59,4 +59,28 @@ html, body {
         html .watch .uk-dropdown-nav li.uk-active a, html .watch .uk-dropdown-nav li:hover a, body .watch .uk-dropdown-nav li.uk-active a, body .watch .uk-dropdown-nav li:hover a {
           color: #fff !important; }
 
+@media (max-width: 480px) {
+  #logo {
+    font-size: 2em; }
+
+  #subtitle {
+    font-size: 1em; }
+
+  #addpair-form #addpair {
+    width: 150px; }
+  #addpair-form button {
+    padding: 0 20px; }
+
+  .watch {
+    padding: 15px 15px 15px 25px !important; }
+    .watch .uk-card-title {
+      font-size: 1em; }
+    .watch .watch-ticker-container {
+      display: block;
+      font-size: 0.8em; }
+    .watch .ratio-header {
+      font-size: 0.8em; }
+    .watch .watch-buysell {
+      font-size: 1em; } }
+
 /*# sourceMappingURL=index.css.map */

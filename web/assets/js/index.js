@@ -279,10 +279,12 @@ $(function () {
 
     function formatRatio(value) {
         value = value.toFixed(2);
-        if (value > 1000000) {
-            value = Math.floor(value / 1000000) + 'm';
+        if (value > 1000000000) {
+            value = Math.floor(value / 1000000) + 'B';
+        } else if (value > 1000000) {
+            value = Math.floor(value / 1000000) + 'M';
         } else if (value > 1000) {
-            value = Math.floor(value / 1000) + 'k';
+            value = Math.floor(value / 1000) + 'K';
         }
 
         return value;
