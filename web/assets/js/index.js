@@ -42,7 +42,7 @@ $(function () {
         return false;
     });
 
-    // toggle ratios display
+    // toggle notifications
     var notifications = {};
     $(document).on('click', '.toggle-notification', function () {
         var pair = $(this).parents('.watch').data('pair'),
@@ -61,6 +61,22 @@ $(function () {
 
         if (notifications[pair]['n' + ratio] == 1 && !Push.Permission.has()) {
             Push.Permission.request();
+        }
+
+        if (notifications[pair]['n' + ratio] == 1) {
+            UIkit.notification({
+                message: 'Notification enabled!',
+                status: 'success',
+                pos: 'bottom-right',
+                timeout: 3000
+            });
+        } else {
+            UIkit.notification({
+                message: 'Notification disabled!',
+                status: 'danger',
+                pos: 'bottom-right',
+                timeout: 3000
+            });
         }
 
         $(this).parents('li').toggleClass('uk-active');
