@@ -1,5 +1,17 @@
 html, body {
   background: #eee; }
+  html a,
+  html .uk-link, body a,
+  body .uk-link {
+    color: #0b7076; }
+    html a:hover, html a:active, html a:focus,
+    html .uk-link:hover,
+    html .uk-link:active,
+    html .uk-link:focus, body a:hover, body a:active, body a:focus,
+    body .uk-link:hover,
+    body .uk-link:active,
+    body .uk-link:focus {
+      color: #0a6065; }
   html .uk-button-primary, body .uk-button-primary {
     background: #0b7076; }
     html .uk-button-primary:hover, html .uk-button-primary:active, html .uk-button-primary:focus, body .uk-button-primary:hover, body .uk-button-primary:active, body .uk-button-primary:focus {
@@ -59,7 +71,7 @@ html, body {
     html .watch .uk-dropdown-nav li, body .watch .uk-dropdown-nav li {
       padding-left: 10px; }
       html .watch .uk-dropdown-nav li.uk-active, html .watch .uk-dropdown-nav li:hover, body .watch .uk-dropdown-nav li.uk-active, body .watch .uk-dropdown-nav li:hover {
-        background: #1e87f0; }
+        background: #0b7076; }
         html .watch .uk-dropdown-nav li.uk-active a, html .watch .uk-dropdown-nav li:hover a, body .watch .uk-dropdown-nav li.uk-active a, body .watch .uk-dropdown-nav li:hover a {
           color: #fff !important; }
 
