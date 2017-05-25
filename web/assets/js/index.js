@@ -30,12 +30,16 @@ $(function () {
                 }
             );
         }
+
+        return false;
     });
 
     // toggle ratios display
     $(document).on('click', '.toggle-ratio', function () {
         $(this).parents('.watch').find('.ratio-' + $(this).data('ratio')).toggleClass('uk-hidden');
         $(this).parents('li').toggleClass('uk-active');
+
+        return false;
     });
 
     // toggle ratios display
@@ -60,6 +64,8 @@ $(function () {
         }
 
         $(this).parents('li').toggleClass('uk-active');
+
+        return false;
     });
 
     // remove watch
@@ -73,22 +79,30 @@ $(function () {
         watch.fadeOut(function () {
             $(this).remove();
         });
+
+        return false;
     });
 
     // update values
     var interval = 5000,
         ratioHistory = {};
     setInterval(function () {
-        var time = moment.utc().unix();
-        $('.watch').each(function (i, item) {
-            var watch = $(item),
+        var time = moment.utc().unix(),
+            watches = $('.watch', '#watches');
+
+        for (var i = 0; i < watches.length; i++) {
+            var watch = $(watches[i]),
                 pair = watch.data('pair');
 
-            $.get(
-                'https://poloniex.com/public',
-                {command: 'returnTradeHistory', currencyPair: pair, start: time - 3600, end: time},
-                function(data) {
-                    var buy1 = 0,
+            $.ajax({
+                url: 'https://poloniex.com/public',
+                data: {command: 'returnTradeHistory', currencyPair: pair, start: time - 3600, end: time},
+                method: 'GET',
+                dataType: 'JSON',
+                context: watch,
+                success: function(data) {
+                    var pair = $(this).data('pair'),
+                        buy1 = 0,
                         sell1 = 0,
                         buy5 = 0,
                         sell5 = 0,
@@ -99,8 +113,9 @@ $(function () {
                         buy60 = 0,
                         sell60 = 0;
 
-                    $.each(data, function (i, trade) {
-                        var tradeTime = moment.utc(trade.date).unix(),
+                    for (var j = 0; j < data.length; j++) {
+                        var trade = data[j],
+                            tradeTime = moment.utc(trade.date).unix(),
                             tradeAmount = parseFloat(trade.amount);
 
                         if (trade.type == 'buy') {
@@ -136,18 +151,18 @@ $(function () {
                                 sell1 = sell1 + tradeAmount;
                             }
                         }
-                    });
+                    }
 
                     // set indicator (based on 5 min ratio)
                     var ratioHeight = 1;
                     if (buy15 > sell15) {
                         ratioHeight = (sell15 / buy15).toFixed(2);
-                        watch.find('.indicator').find('.down').css('height', '0');
-                        watch.find('.indicator').find('.up').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
+                        $(this).find('.indicator').find('.down').css('height', '0');
+                        $(this).find('.indicator').find('.up').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
                     } else {
                         ratioHeight = (buy15 / sell15).toFixed(2);
-                        watch.find('.indicator').find('.up').css('height', '0');
-                        watch.find('.indicator').find('.down').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
+                        $(this).find('.indicator').find('.up').css('height', '0');
+                        $(this).find('.indicator').find('.down').css('height', Math.floor((1 - ratioHeight) * 50) + '%');
                     }
 
                     // set 1min ration
@@ -157,7 +172,7 @@ $(function () {
                     } else if (sell1 > buy1) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell1 / Math.max(buy1, 0.00000001));
                     }
-                    watch.find('.watch-buysell-1').html(ratio);
+                    $(this).find('.watch-buysell-1').html(ratio);
 
                     // set 5min ration
                     ratio = '1 : 1';
@@ -166,7 +181,7 @@ $(function () {
                     } else if (sell5 > buy5) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell5 / Math.max(buy5, 0.00000001));
                     }
-                    watch.find('.watch-buysell-5').html(ratio);
+                    $(this).find('.watch-buysell-5').html(ratio);
 
                     // set 15 min ratio
                     ratio = '1 : 1';
@@ -175,7 +190,7 @@ $(function () {
                     } else if (sell15 > buy15) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell15 / Math.max(buy15, 0.00000001));
                     }
-                    watch.find('.watch-buysell-15').html(ratio);
+                    $(this).find('.watch-buysell-15').html(ratio);
 
                     // set 30 min ratio
                     ratio = '1 : 1';
@@ -184,7 +199,7 @@ $(function () {
                     } else if (sell30 > buy30) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell30 / Math.max(buy30, 0.00000001));
                     }
-                    watch.find('.watch-buysell-30').html(ratio);
+                    $(this).find('.watch-buysell-30').html(ratio);
 
                     // set 60 min ratio
                     ratio = '1 : 1';
@@ -193,7 +208,7 @@ $(function () {
                     } else if (sell60 > buy60) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell60 / Math.max(buy60, 0.00000001));
                     }
-                    watch.find('.watch-buysell-60').html(ratio);
+                    $(this).find('.watch-buysell-60').html(ratio);
 
                     // trigger alerts
                     if (pair in notifications && Push.Permission.has()) {
@@ -273,8 +288,8 @@ $(function () {
                     ratioHistory[pair]['ratio30'] = buy30 > sell30;
                     ratioHistory[pair]['ratio60'] = buy60 > sell60;
                 }
-            );
-        });
+            });
+        }
     }, interval);
 
     function formatRatio(value) {
@@ -301,7 +316,7 @@ $(function () {
         console.log("Websocket connection opened!");
 
         function tickerEvent (ticker) {
-            var watch = $('.watch[data-pair="' + ticker[0] + '"]');
+            var watch = $('.watch[data-pair="' + ticker[0] + '"]', '#watches');
             watch.find('.watch-ticker').html(ticker[1]);
         }
 
