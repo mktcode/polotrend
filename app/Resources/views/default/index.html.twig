@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <div uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        You can now enable price notifications. <span uk-icon="icon: bell"></span>
+    </div>
     <div class="uk-card uk-card-small uk-card-default uk-card-body">
         <form class="uk-form-stacked uk-text-center" id="addpair-form">
             <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
@@ -80,6 +84,7 @@
             </span>
             <a href="#" class="watch-display uk-link-muted" uk-icon="icon: cog" title="Display" uk-tooltip></a>
             <div uk-dropdown="mode: click">
+                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">Display ratios:</div>
                 <ul class="uk-nav uk-dropdown-nav">
                     <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="1">1 min.</a></li>
                     <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="5">5 min.</a></li>
@@ -90,7 +95,7 @@
             </div>
             <a href="#" class="watch-alert uk-link-muted" uk-icon="icon: bell" title="Notifications" uk-tooltip></a>
             <div uk-dropdown="mode: click">
-                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">Send notification if ratio trend flips.</div>
+                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">Send notification if ratio trend flips:</div>
                 <ul class="uk-nav uk-dropdown-nav">
                     <li><a href="#" class="toggle-notification" data-ratio="1">1 min.</a></li>
                     <li><a href="#" class="toggle-notification" data-ratio="5">5 min.</a></li>
@@ -98,6 +103,13 @@
                     <li><a href="#" class="toggle-notification" data-ratio="30">30 min.</a></li>
                     <li><a href="#" class="toggle-notification" data-ratio="60">60 min.</a></li>
                 </ul>
+                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">
+                    <form class="price-notification-form">
+                        <input type="checkbox" class="uk-checkbox price-notification-toggle"/>
+                        Price notification
+                        <input type="text" class="uk-input uk-text-center price-notification-input"/>
+                    </form>
+                </div>
             </div>
             <a href="#" class="watch-move uk-link-muted" uk-icon="icon: move" title="Move" uk-tooltip></a>
             <a href="#" class="watch-close" uk-close title="Close" uk-tooltip></a>

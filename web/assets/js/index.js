@@ -25,6 +25,7 @@ $(function () {
                 {command: 'returnTicker'},
                 function(data) {
                     watch.find('.watch-ticker').html(data[pair].last);
+                    watch.find('.price-notification-input').val(data[pair].last);
                     watch.find('.watch-lowask').html(data[pair].lowestAsk);
                     watch.find('.watch-highbid').html(data[pair].highestBid);
                 }
@@ -82,6 +83,49 @@ $(function () {
         $(this).parents('li').toggleClass('uk-active');
 
         return false;
+    });
+
+    // toggle price notification
+    var priceNotifications = {};
+    $(document).on('click', '.price-notification-toggle', function () {
+        var pair = $(this).parents('.watch').data('pair'),
+            triggerPrice = $(this).parent().find('.price-notification-input').val();
+
+        if ($(this).prop('checked')) {
+            priceNotifications[pair] = triggerPrice;
+            UIkit.notification({
+                message: 'Notification enabled!',
+                status: 'success',
+                pos: 'bottom-center',
+                timeout: 3000
+            });
+            if (!Push.Permission.has()) {
+                Push.Permission.request();
+            }
+        } else {
+            priceNotifications[pair] = false;
+            UIkit.notification({
+                message: 'Notification disabled!',
+                status: 'danger',
+                pos: 'bottom-center',
+                timeout: 3000
+            });
+        }
+    });
+    $(document).on('change', '.price-notification-input', function () {
+        var watch = $(this).parents('.watch');
+        if ($(this).parents('.watch').find('.price-notification-toggle').prop('checked')) {
+            priceNotifications[watch.data('pair')] = $(this).val();
+            UIkit.notification({
+                message: 'Trigger price changed!',
+                status: 'success',
+                pos: 'bottom-center',
+                timeout: 3000
+            });
+        }
+    });
+    $(document).on('submit', '.price-notification-form', function (e) {
+        e.preventDefault();
     });
 
     // remove watch
@@ -322,11 +366,13 @@ $(function () {
     }
 
     // update price ticker with websocket
-    var wsuri = "wss://api.poloniex.com";
-    var connection = new autobahn.Connection({
-        url: wsuri,
-        realm: "realm1"
-    });
+
+    var priceHistory = {},
+        wsuri = "wss://api.poloniex.com",
+        connection = new autobahn.Connection({
+            url: wsuri,
+            realm: "realm1"
+        });
 
     connection.onopen = function (session) {
         console.log("Websocket connection opened!");
@@ -334,6 +380,28 @@ $(function () {
         function tickerEvent (ticker) {
             var watch = $('.watch[data-pair="' + ticker[0] + '"]', '#watches');
             watch.find('.watch-ticker').html(ticker[1]);
+            if (ticker[0] in priceHistory && ticker[0] in priceNotifications && priceNotifications[ticker[0]]) {
+                if (
+                    (priceHistory[ticker[0]] < priceNotifications[ticker[0]] && ticker[1] >= priceNotifications[ticker[0]])
+                    ||
+                    (priceHistory[ticker[0]] > priceNotifications[ticker[0]] && ticker[1] <= priceNotifications[ticker[0]])
+                ) {
+                    Push.create('PoloTrend', {
+                        body: ticker[0] + ' reached ' + priceNotifications[ticker[0]] + '! (' + ticker[1] + ')',
+                        timeout: 5000,
+                        icon: 'assets/img/push-icon.png',
+                        onClick: function () {
+                            window.focus();
+                            this.close();
+                        }
+                    });
+                    priceNotifications[ticker[0]] = false;
+                    watch.find('.price-notification-toggle').prop('checked', false);
+                }
+            }
+
+            // set new history entry
+            priceHistory[ticker[0]] = ticker[1];
         }
 
         session.subscribe('ticker', tickerEvent);
