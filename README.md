@@ -20,6 +20,7 @@ Little tool for short term buy/sell based trend indication on poloniex.
 
 - solve performance issues
 - save setup in localstorage (active pairs, display/notification settings)
+- take orders into calculation
 - notification sounds
 - trollbox implementation
 - better explaination
