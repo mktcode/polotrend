@@ -1,10 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div uk-alert>
-        <a class="uk-alert-close" uk-close></a>
-        You can now enable price notifications. <span uk-icon="icon: bell"></span>
-    </div>
     <div class="uk-card uk-card-small uk-card-default uk-card-body">
         <form class="uk-form-stacked uk-text-center" id="addpair-form">
             <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
@@ -60,6 +56,7 @@
     <div id="info-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <button class="uk-modal-close-default" type="button" uk-close></button>
+            <h2 class="uk-modal-title">How it works</h2>
             <p>
                 All trades from the last 60 minutes for a given currency pair are read from the poloniex api constantly.
                 The numbers displayed are <b>simply ratios between sell and buy trades based on the total coin amount</b> of all these trades.
@@ -72,6 +69,11 @@
                 <br>
                 <a href="https://markus-kottlaender.de" target="_blank"><i class="uk-text-small uk-text-muted">Markus</i></a>
             </p>
+            <h3>Latest changes</h3>
+            <ul>
+                <li>notification sounds</li>
+                <li>price notifications</li>
+            </ul>
         </div>
     </div>
 
