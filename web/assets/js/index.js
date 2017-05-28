@@ -173,6 +173,11 @@ $(function () {
                         buy60 = 0,
                         sell60 = 0;
 
+                    // set trades per minute
+                    if (data.length) {
+                        $(this).find('.watch-trades-per-minute > span').text((data.length / 60).toFixed(2));
+                    }
+
                     for (var j = 0; j < data.length; j++) {
                         var trade = data[j],
                             tradeTime = moment.utc(trade.date).unix(),

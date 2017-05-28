@@ -37,7 +37,8 @@ html > body .uk-sortable-empty {
   min-height: 0; }
 html > body .watch {
   position: relative;
-  padding-left: 25px !important; }
+  padding-left: 25px !important;
+  padding-bottom: 5px !important; }
   html > body .watch .poloniex-link {
     color: #444; }
   html > body .watch .watch-display {
@@ -85,6 +86,13 @@ html > body .watch {
       background: #0b7076; }
       html > body .watch .uk-dropdown-nav li.uk-active a, html > body .watch .uk-dropdown-nav li:hover a {
         color: #fff !important; }
+  html > body .watch .watch-trades-per-minute {
+    color: #aaa;
+    text-align: center;
+    font-size: 11px;
+    margin-top: 10px; }
+    html > body .watch .watch-trades-per-minute > span {
+      font-weight: bold; }
 
 @media (max-width: 480px) {
   #logo {
