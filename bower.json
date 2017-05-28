@@ -8,6 +8,8 @@
     "uikit": "^3.0.0",
     "autobahn": "^17.5.1",
     "push.js": "^0.0.13",
-    "moment-timezone": "^0.5.13"
+    "moment-timezone": "^0.5.13",
+    "ion-sound": "ionsound#^3.0.7",
+    "font-awesome": "fontawesome#^4.7.0"
   }
 }

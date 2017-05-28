@@ -284,6 +284,7 @@ $(function () {
                                             this.close();
                                         }
                                     });
+                                    playNotificationSound();
                                 }
                             }
                             if (ratioHistory[pair]['ratio5'] != buy5 > sell5) {
@@ -297,6 +298,7 @@ $(function () {
                                             this.close();
                                         }
                                     });
+                                    playNotificationSound();
                                 }
                             }
                             if (ratioHistory[pair]['ratio15'] != buy15 > sell15) {
@@ -310,6 +312,7 @@ $(function () {
                                             this.close();
                                         }
                                     });
+                                    playNotificationSound();
                                 }
                             }
                             if (ratioHistory[pair]['ratio30'] != buy30 > sell30) {
@@ -323,6 +326,7 @@ $(function () {
                                             this.close();
                                         }
                                     });
+                                    playNotificationSound();
                                 }
                             }
                             if (ratioHistory[pair]['ratio60'] != buy60 > sell60) {
@@ -336,6 +340,7 @@ $(function () {
                                             this.close();
                                         }
                                     });
+                                    playNotificationSound();
                                 }
                             }
                         }
@@ -366,14 +371,12 @@ $(function () {
     }
 
     // update price ticker with websocket
-
     var priceHistory = {},
         wsuri = "wss://api.poloniex.com",
         connection = new autobahn.Connection({
             url: wsuri,
             realm: "realm1"
         });
-
     connection.onopen = function (session) {
         console.log("Websocket connection opened!");
 
@@ -395,6 +398,7 @@ $(function () {
                             this.close();
                         }
                     });
+                    playNotificationSound();
                     priceNotifications[ticker[0]] = false;
                     watch.find('.price-notification-toggle').prop('checked', false);
                 }
@@ -406,10 +410,36 @@ $(function () {
 
         session.subscribe('ticker', tickerEvent);
     };
-
     connection.onclose = function () {
         console.log("Websocket connection closed!");
     };
-
     connection.open();
+
+    // init sounds
+    ion.sound({
+        sounds: [
+            {
+                name: "notification"
+            }
+        ],
+        volume: 1,
+        path: "assets/audio/",
+        preload: true
+    });
+
+    var playNotificationSounds = true;
+    function playNotificationSound() {
+        if (playNotificationSounds) {
+            ion.sound.play("notification");
+        }
+    }
+
+    $('#toggleNotificationSounds').click(function () {
+        $(this).find('i').toggleClass('fa-volume-up fa-volume-off');
+        playNotificationSounds = playNotificationSounds ? 0 : 1;
+        if (playNotificationSounds) {
+            ion.sound.play("notification");
+        }
+        return false;
+    });
 });

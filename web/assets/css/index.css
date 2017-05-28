@@ -1,81 +1,90 @@
 html, body {
   background: #eee; }
-  html a,
-  html .uk-link, body a,
-  body .uk-link {
-    color: #0b7076; }
-    html a:hover, html a:active, html a:focus,
-    html .uk-link:hover,
-    html .uk-link:active,
-    html .uk-link:focus, body a:hover, body a:active, body a:focus,
-    body .uk-link:hover,
-    body .uk-link:active,
-    body .uk-link:focus {
-      color: #0a6065; }
-  html .uk-button-primary, body .uk-button-primary {
-    background: #0b7076; }
-    html .uk-button-primary:hover, html .uk-button-primary:active, html .uk-button-primary:focus, body .uk-button-primary:hover, body .uk-button-primary:active, body .uk-button-primary:focus {
-      background: #0a6065; }
-  html #logo, body #logo {
-    margin-bottom: 0; }
-    html #logo a, body #logo a {
-      color: #0b7076 !important; }
-      html #logo a:hover, body #logo a:hover {
-        text-decoration: none; }
-  html #subtitle, body #subtitle {
-    margin-top: 0; }
-  html .uk-sortable-empty, body .uk-sortable-empty {
-    min-height: 0; }
-  html .watch, body .watch {
-    position: relative;
-    padding-left: 25px !important; }
-    html .watch .poloniex-link, body .watch .poloniex-link {
-      color: #444; }
-    html .watch .watch-display, body .watch .watch-display {
-      position: absolute;
-      top: 20px;
-      right: 110px; }
-    html .watch .watch-alert, body .watch .watch-alert {
-      position: absolute;
-      top: 20px;
-      right: 80px; }
-    html .watch .watch-move, body .watch .watch-move {
-      position: absolute;
-      top: 20px;
-      right: 50px;
-      cursor: move; }
-    html .watch .watch-close, body .watch .watch-close {
-      position: absolute;
-      top: 20px;
-      right: 20px; }
-    html .watch .indicator, body .watch .indicator {
+
+html > body a,
+html > body .uk-link {
+  color: #0b7076; }
+  html > body a:hover, html > body a:active, html > body a:focus,
+  html > body .uk-link:hover,
+  html > body .uk-link:active,
+  html > body .uk-link:focus {
+    color: #0a6065; }
+html > body .uk-button-primary {
+  background: #0b7076; }
+  html > body .uk-button-primary:hover, html > body .uk-button-primary:active, html > body .uk-button-primary:focus {
+    background: #0a6065; }
+html > body #logo {
+  margin-bottom: 0; }
+  html > body #logo a {
+    color: #0b7076 !important; }
+    html > body #logo a:hover {
+      text-decoration: none; }
+html > body #subtitle {
+  margin-top: 0; }
+html > body #nav a {
+  border: solid 1px #999;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  display: inline-block;
+  color: #999; }
+  html > body #nav a:hover, html > body #nav a:focus, html > body #nav a:active {
+    color: #0b7076;
+    border-color: #0b7076; }
+html > body .uk-sortable-empty {
+  min-height: 0; }
+html > body .watch {
+  position: relative;
+  padding-left: 25px !important; }
+  html > body .watch .poloniex-link {
+    color: #444; }
+  html > body .watch .watch-display {
+    position: absolute;
+    top: 20px;
+    right: 110px; }
+  html > body .watch .watch-alert {
+    position: absolute;
+    top: 20px;
+    right: 80px; }
+  html > body .watch .watch-move {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    cursor: move; }
+  html > body .watch .watch-close {
+    position: absolute;
+    top: 20px;
+    right: 20px; }
+  html > body .watch .indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: #f2f2f2; }
+    html > body .watch .indicator .up, html > body .watch .indicator .down {
       position: absolute;
       left: 0;
-      top: 0;
-      bottom: 0;
-      width: 15px;
-      background: #f2f2f2; }
-      html .watch .indicator .up, html .watch .indicator .down, body .watch .indicator .up, body .watch .indicator .down {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 0; }
-      html .watch .indicator .up, body .watch .indicator .up {
-        bottom: 50%;
-        background: #0c0; }
-      html .watch .indicator .down, body .watch .indicator .down {
-        top: 50%;
-        background: #c00; }
-    html .watch .uk-dropdown, body .watch .uk-dropdown {
-      padding: 0; }
-      html .watch .uk-dropdown .price-notification, body .watch .uk-dropdown .price-notification {
-        font-size: 17px; }
-    html .watch .uk-dropdown-nav li, body .watch .uk-dropdown-nav li {
-      padding-left: 10px; }
-      html .watch .uk-dropdown-nav li.uk-active, html .watch .uk-dropdown-nav li:hover, body .watch .uk-dropdown-nav li.uk-active, body .watch .uk-dropdown-nav li:hover {
-        background: #0b7076; }
-        html .watch .uk-dropdown-nav li.uk-active a, html .watch .uk-dropdown-nav li:hover a, body .watch .uk-dropdown-nav li.uk-active a, body .watch .uk-dropdown-nav li:hover a {
-          color: #fff !important; }
+      right: 0;
+      height: 0; }
+    html > body .watch .indicator .up {
+      bottom: 50%;
+      background: #0c0; }
+    html > body .watch .indicator .down {
+      top: 50%;
+      background: #c00; }
+  html > body .watch .uk-dropdown {
+    padding: 0; }
+    html > body .watch .uk-dropdown .price-notification {
+      font-size: 17px; }
+  html > body .watch .uk-dropdown-nav li {
+    padding-left: 10px; }
+    html > body .watch .uk-dropdown-nav li.uk-active, html > body .watch .uk-dropdown-nav li:hover {
+      background: #0b7076; }
+      html > body .watch .uk-dropdown-nav li.uk-active a, html > body .watch .uk-dropdown-nav li:hover a {
+        color: #fff !important; }
 
 @media (max-width: 480px) {
   #logo {

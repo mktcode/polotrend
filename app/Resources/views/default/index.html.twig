@@ -9,7 +9,16 @@
         <form class="uk-form-stacked uk-text-center" id="addpair-form">
             <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
             <h3 id="subtitle" class="uk-text-center uk-heading-line"><span>See when people start to buy or sell.</span></h3>
-            <a href="#info-modal" class="uk-position-top-right uk-margin-right uk-margin-top" uk-toggle uk-icon="icon: info"></a>
+
+            <div class="uk-position-top-right uk-margin-small-right uk-margin-small-top" id="nav">
+                <a href="#" id="toggleNotificationSounds" style="margin-right: 5px;">
+                    <i class="fa fa-volume-up"></i>
+                </a>
+                <a href="#info-modal" uk-toggle>
+                    <i class="fa fa-info"></i>
+                </a>
+            </div>
+
             <label class="uk-form-label uk-text-muted uk-margin-small-bottom" for="addpair">
                 Add currency pairs to watch their <i><b>buy:sell</b></i> ratio.
             </label>

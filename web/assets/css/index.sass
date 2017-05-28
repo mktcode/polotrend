@@ -1,6 +1,7 @@
 html, body
   background: #eee
 
+html > body
   a,
   .uk-link
     color: #0b7076
@@ -25,6 +26,22 @@ html, body
 
   #subtitle
     margin-top: 0
+
+  #nav
+    a
+      border: solid 1px #999
+      border-radius: 50%
+      width: 25px
+      height: 25px
+      line-height: 25px
+      text-align: center
+      display: inline-block
+      color: #999
+      &:hover,
+      &:focus,
+      &:active
+        color: #0b7076
+        border-color: #0b7076
 
   .uk-sortable-empty
     min-height: 0
