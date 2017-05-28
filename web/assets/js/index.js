@@ -162,6 +162,7 @@ $(function () {
                 context: watch,
                 success: function(data) {
                     var pair = $(this).data('pair'),
+                        tradeCount1 = 0,
                         buy1 = 0,
                         sell1 = 0,
                         buy5 = 0,
@@ -175,7 +176,7 @@ $(function () {
 
                     // set trades per minute
                     if (data.length) {
-                        $(this).find('.watch-trades-per-minute > span').text((data.length / 60).toFixed(2));
+                        $(this).find('.watch-trades-per-minute > .avg').text((data.length / 60).toFixed(2));
                     }
 
                     for (var j = 0; j < data.length; j++) {
@@ -198,6 +199,7 @@ $(function () {
                             }
                             if (time - tradeTime < 60) {
                                 buy1 = buy1 + tradeAmount;
+                                tradeCount1++;
                             }
                         } else if (trade.type == 'sell') {
                             if (time - tradeTime < 3600) {
@@ -214,9 +216,12 @@ $(function () {
                             }
                             if (time - tradeTime < 60) {
                                 sell1 = sell1 + tradeAmount;
+                                tradeCount1++;
                             }
                         }
                     }
+
+                    $(this).find('.watch-trades-per-minute > .last').text((tradeCount1).toFixed(2));
 
                     // set indicator (based on 5 min ratio)
                     var ratioHeight = 1;
