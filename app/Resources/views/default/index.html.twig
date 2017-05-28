@@ -6,14 +6,10 @@
             <h1 id="logo"><a href="{{ path('homepage') }}">Polotrend</a></h1>
             <h3 id="subtitle" class="uk-text-center uk-heading-line"><span>See when people start to buy or sell.</span></h3>
 
-            <div class="uk-position-top-right uk-margin-small-right uk-margin-small-top" id="nav">
-                <a href="#" id="toggleNotificationSounds" style="margin-right: 5px;">
-                    <i class="fa fa-volume-up"></i>
-                </a>
-                <a href="#info-modal" uk-toggle>
-                    <i class="fa fa-info"></i>
-                </a>
-            </div>
+            <a href="#" class="uk-button uk-button-small uk-position-top-right uk-margin-small-top uk-link-muted"
+               id="toggleNotificationSounds" title="Notification sounds" uk-tooltip="pos: left">
+                <i class="fa fa-volume-up"></i>
+            </a>
 
             <label class="uk-form-label uk-text-muted uk-margin-small-bottom" for="addpair">
                 Add currency pairs to watch their <i><b>buy:sell</b></i> ratio.
@@ -29,6 +25,11 @@
                     <span uk-icon="icon: plus"></span>
                 </button>
             </div>
+            <div class="uk-margin-top">
+                <a href="#info-modal" class="uk-button uk-button-small" style="text-transform: none;" uk-toggle>
+                    <span uk-icon="icon: info"></span> How does it work?
+                </a>
+            </div>
         </form>
     </div>
 
@@ -41,6 +42,11 @@
         <div class="uk-text-center uk-text-right@s">
             Donate BTC: <a href="#donate-modal" class="uk-link-muted" uk-toggle>15kutfMutsAZxNy82LKvvkbMG5nrixiARD</a>
         </div>
+    </div>
+    <div class="uk-text-center uk-margin-large-top" style="color: #bbb;">
+        Favorite user quote so far:<br>
+        <i class="uk-text-lead" style="color: #aaa;">&bdquo;Awesome tool! Survived BTC crash thanks to you!&ldquo;</i><br>
+        Your welcome! :D
     </div>
 
     <div id="donate-modal" uk-modal>
@@ -56,24 +62,43 @@
     <div id="info-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <button class="uk-modal-close-default" type="button" uk-close></button>
-            <h2 class="uk-modal-title">How it works</h2>
+            <h2 class="uk-modal-title">
+                <span uk-icon="icon: info; ratio: 2" style="cursor: default;"></span>
+                How does it work?
+            </h2>
             <p>
-                All trades from the last 60 minutes for a given currency pair are read from the poloniex api constantly.
-                The numbers displayed are <b>simply ratios between sell and buy trades based on the total coin amount</b> of all these trades.
-                A ratio for the last 1, 5, 15, 30 and 60 minutes is calculated. This can be a very helpful indication of when to buy low or sell high.<br>
-                (The green/red indicator on the left side represents the 15 minutes ratio.)<br>
-                <br>
-                For each currency pair and ratio time frame you can enable <b>browser notifications</b> when the "trend" flips by clicking on the bell icon in the top right corner of each currency pair you are watching. You can also choose <b>which time frames to show</b> by clicking the gear icon.<br>
-                <br>
-                Performance note: Unfortunatly the performance of this website is not that good, at least when you add many currency pairs. I am working on this right now. If you are a developer you can help at: <a href="https://github.com/mktcode/polotrend" class="uk-text-muted" target="_blank">https://github.com/mktcode/polotrend</a><br>
+                Add one or more currency pairs from the dropdown. The tool looks up all the trades on Poloniex for your chosen currencies,
+                that were executed in the last hour and then calculates ratios between buy and sell trades. A ratio for the last 60, 30, 15, 5 and 1 minutes is displayed.
+            </p>
+            <p>
+                <img src="{{ asset('assets/img/screen1.png') }}" class="uk-align-left" alt="Screenshot 1" width="275" />
+                In this example Etherium was 1.21 times more sold than bought in the past hour and even 1.52 times more in the past 30 minutes. So the left number represents buys and the right one sales.
+                Red indicates a sell trend and green a buy trend. Next to the currency pair label at the top you see the current price.
+            </p>
+            <p>
+                <img src="{{ asset('assets/img/screen2.png') }}" class="uk-align-left" alt="Screenshot 2" />
+                Now in the last minute we can finally see a buy trend. But of course this doesn't mean that price will go up and you should buy now as fast as possible!
+                Depending on the currency the numbers meaning can differ. Because the ratios are based on the total amount of coins traded, a currency with only a few trades per minute could easily show a ridiculous 1 minute trend because there was only this one "big" trade.
+                <b>I am anything but a professional trader. So interpretation is up to you!</b>
+            </p>
+            <p class="uk-clearfix">
+                <img src="{{ asset('assets/img/screen3.png') }}" class="uk-align-left" width="175" alt="Screenshot 3" />
+                For convenience you can enable <b>browser notifications</b> and get notified when a trend flips by clicking on the bell icon in the top right corner of each currency pair you are watching. You can also choose <b>which time sections to show</b> by clicking the gear icon.<br>
+            </p>
+            <p>
+                <b>Performance note</b>: Unfortunatly when you add too many currency pairs the site can become a little cumbersome. If you are a developer you can help and participate at: <a href="https://github.com/mktcode/polotrend" class="uk-text-muted" target="_blank">https://github.com/mktcode/polotrend</a><br>
+            </p>
+            <p>
+                If you like this tool, btc donations to
+            </p>
+            <p class="uk-text-center">
+                <a href="#donate-modal" class="uk-link-muted" uk-toggle>15kutfMutsAZxNy82LKvvkbMG5nrixiARD</a><br>
+            </p>
+            <p>
+                are very, very appreciated! :)<br>
                 <br>
                 <a href="https://markus-kottlaender.de" target="_blank"><i class="uk-text-small uk-text-muted">Markus</i></a>
             </p>
-            <h3>Latest changes</h3>
-            <ul>
-                <li>notification sounds</li>
-                <li>price notifications</li>
-            </ul>
         </div>
     </div>
 
