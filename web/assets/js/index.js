@@ -1,6 +1,8 @@
 $(function () {
     var addpair = $('#addpair'),
-        watchTemplate = $('#watch-template');
+        watchTemplate = $('#watch-template'),
+        titleTag = $('title'),
+        titlePair = false;
 
     // add watch
     $('#addpair-form').submit(function (e) {
@@ -143,6 +145,19 @@ $(function () {
         return false;
     });
 
+    // set pair to show in title
+    $(document).on('change', '#watches .show-in-title-toggle', function () {
+        if ($(this).prop('checked')) {
+            titlePair = $(this).parents('.watch').data('pair');
+        } else {
+            titlePair = false;
+            titleTag.text('Polotrend - See when people start to buy or sell on Poloniex!');
+        }
+        $('.show-in-title-toggle', '#watches').not($(this)).each(function (i, item) {
+            $(this).prop('checked', false);
+        });
+    });
+
     // update values
     var interval = 5000,
         ratioHistory = {};
@@ -239,8 +254,14 @@ $(function () {
                     var ratio = '1 : 1';
                     if (buy1 > sell1) {
                         ratio = '<span class="uk-text-success">' + formatRatio(buy1 / Math.max(sell1, 0.00000001)) + ' : 1</span>';
+                        if (titlePair == pair) {
+                            titleTag.html('&uArr; ' + pair + ' ' + formatRatio(buy1 / Math.max(sell1, 0.00000001)) + ' : 1');
+                        }
                     } else if (sell1 > buy1) {
                         ratio = '<span class="uk-text-danger">1 : ' + formatRatio(sell1 / Math.max(buy1, 0.00000001));
+                        if (titlePair == pair) {
+                            titleTag.html('&dArr; ' + pair + ' 1 : ' + formatRatio(sell1 / Math.max(buy1, 0.00000001)));
+                        }
                     }
                     $(this).find('.watch-buysell-1').html(ratio);
 

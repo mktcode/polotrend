@@ -114,7 +114,13 @@
             </span>
             <a href="#" class="watch-display uk-link-muted" uk-icon="icon: cog" title="Display" uk-tooltip></a>
             <div uk-dropdown="mode: click">
-                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">Display ratios:</div>
+                <div class="uk-text-small uk-text-muted uk-padding-small uk-text-center">
+                    Display ratios:
+                    <form class="uk-margin-small-top">
+                        <input type="checkbox" class="uk-checkbox show-in-title-toggle"/>
+                        show 1 min. in title bar
+                    </form>
+                </div>
                 <ul class="uk-nav uk-dropdown-nav">
                     <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="1">1 min.</a></li>
                     <li class="uk-active"><a href="#" class="toggle-ratio" data-ratio="5">5 min.</a></li>
