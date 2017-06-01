@@ -6,9 +6,11 @@ $(function () {
 
     // load watches from storage
     var watchesFromStorage = JSON.parse(localStorage.getItem('watches'));
-    for (var i = 0; i < watchesFromStorage.length; i++) {
-        if (watchesFromStorage[i]) {
-            addWatch(watchesFromStorage[i]);
+    if (watchesFromStorage) {
+        for (var i = 0; i < watchesFromStorage.length; i++) {
+            if (watchesFromStorage[i]) {
+                addWatch(watchesFromStorage[i]);
+            }
         }
     }
 
@@ -20,6 +22,8 @@ $(function () {
             addWatch(pair);
             saveWatchToStorage(pair);
         }
+
+        return false;
     });
 
     function addWatch(pair) {
@@ -46,8 +50,6 @@ $(function () {
                 watch.find('.watch-highbid').html(data[pair].highestBid);
             }
         );
-
-        return false;
     }
 
     function saveWatchToStorage(pair) {
