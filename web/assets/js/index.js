@@ -4,38 +4,80 @@ $(function () {
         titleTag = $('title'),
         titlePair = false;
 
+    // load watches from storage
+    var watchesFromStorage = JSON.parse(localStorage.getItem('watches'));
+    for (var i = 0; i < watchesFromStorage.length; i++) {
+        if (watchesFromStorage[i]) {
+            addWatch(watchesFromStorage[i]);
+        }
+    }
+
     // add watch
     $('#addpair-form').submit(function (e) {
         e.preventDefault();
-        if (addpair.val()) {
-            var pair = addpair.val(),
-                pairLabel = pair.split('_'),
-                watchHTML = watchTemplate.html();
-
-            addpair.find('option:selected').prop('disabled', true);
-
-            var watch = $(watchHTML);
-            watch.find('.poloniex-link').attr('href', 'https://poloniex.com/exchange#' + pair).html(pairLabel[1] + '/' + pairLabel[0]);
-            watch.data('pair', pair).attr('data-pair', pair);
-            watch.hide();
-            watch.appendTo('#watches');
-            watch.fadeIn();
-
-            // get initial data
-            $.get(
-                'https://poloniex.com/public',
-                {command: 'returnTicker'},
-                function(data) {
-                    watch.find('.watch-ticker').html(data[pair].last);
-                    watch.find('.price-notification-input').val(data[pair].last);
-                    watch.find('.watch-lowask').html(data[pair].lowestAsk);
-                    watch.find('.watch-highbid').html(data[pair].highestBid);
-                }
-            );
+        var pair = addpair.val();
+        if (pair) {
+            addWatch(pair);
+            saveWatchToStorage(pair);
         }
+    });
+
+    function addWatch(pair) {
+        var pairLabel = pair.split('_'),
+            watchHTML = watchTemplate.html();
+
+        addpair.find('option[value="' + pair + '"]').prop('disabled', true);
+
+        var watch = $(watchHTML);
+        watch.find('.poloniex-link').attr('href', 'https://poloniex.com/exchange#' + pair).html(pairLabel[1] + '/' + pairLabel[0]);
+        watch.data('pair', pair).attr('data-pair', pair);
+        watch.hide();
+        watch.appendTo('#watches');
+        watch.fadeIn();
+
+        // get initial data
+        $.get(
+            'https://poloniex.com/public',
+            {command: 'returnTicker'},
+            function(data) {
+                watch.find('.watch-ticker').html(data[pair].last);
+                watch.find('.price-notification-input').val(data[pair].last);
+                watch.find('.watch-lowask').html(data[pair].lowestAsk);
+                watch.find('.watch-highbid').html(data[pair].highestBid);
+            }
+        );
 
         return false;
-    });
+    }
+
+    function saveWatchToStorage(pair) {
+        if (typeof(Storage) !== "undefined") {
+            var watches = JSON.parse(localStorage.getItem('watches'));
+
+            if (!watches) {
+                watches = [];
+                watches.push(pair);
+            }
+
+            if (watches.indexOf(pair) == -1) {
+                watches.push(pair);
+            }
+
+            localStorage.setItem('watches', JSON.stringify(watches));
+        }
+    }
+
+    function deleteWatchFromStorage(pair) {
+        if (typeof(Storage) !== "undefined") {
+            var watches = JSON.parse(localStorage.getItem('watches'));
+
+            watches = jQuery.grep(watches, function(value) {
+                return value != pair;
+            });
+
+            localStorage.setItem('watches', JSON.stringify(watches));
+        }
+    }
 
     // toggle ratios display
     $(document).on('click', '.toggle-ratio', function () {
@@ -141,6 +183,8 @@ $(function () {
         watch.fadeOut(function () {
             $(this).remove();
         });
+
+        deleteWatchFromStorage(pair);
 
         return false;
     });
